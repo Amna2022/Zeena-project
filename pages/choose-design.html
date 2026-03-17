@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /> <!-- character set -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- responsive -->
+  <title>Zeena — Choose Design</title> <!-- page title -->
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+</head>
+
+<body class="zeena zeena-choose-design">
+  <!-- Top bar -->
+  <header class="zeena-topbar">
+    <button class="zeena-icon-btn" type="button" aria-label="Back" onclick="history.back()">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 18l-6-6 6-6" fill="none" stroke="#3D2C2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="zeena-title">
+      <h1>Choose Design</h1> <!-- page heading -->
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="zeena-content cd-content">
+    <p class="cd-hint">Upload your own design or select from our gallery.</p> <!-- small hint -->
+
+    <!-- Upload card -->
+    <section class="cd-upload">
+      <input id="designFile" type="file" accept="image/*" hidden /> <!-- hidden file input -->
+
+      <button id="uploadCard" class="cd-upload-card" type="button">
+        <span class="cd-upload-icon" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24">
+            <path d="M12 16V4" fill="none" stroke="#B76E79" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8 8l4-4 4 4" fill="none" stroke="#B76E79" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 20h16" fill="none" stroke="#B76E79" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+
+        <div class="cd-upload-text">
+          <div class="cd-upload-title">Upload Image</div> <!-- upload title -->
+          <div class="cd-upload-sub">Tap to select a design from your device</div> <!-- upload text -->
+        </div>
+      </button>
+
+      <div id="uploadPreview" class="cd-preview" hidden>
+        <img id="previewImg" alt="Uploaded design preview" /> <!-- uploaded image preview -->
+        <button id="removeUpload" class="cd-remove" type="button">Remove</button> <!-- remove image -->
+      </div>
+    </section>
+
+    <!-- OR divider -->
+    <div class="cd-or">
+      <span class="cd-line"></span>
+      <span class="cd-or-text">OR</span> <!-- divider text -->
+      <span class="cd-line"></span>
+    </div>
+
+    <!-- Gallery -->
+    <section class="cd-gallery">
+      <div class="cd-gallery-head">
+        <span class="cd-gallery-ico" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <path d="M4 5h16v14H4z" fill="none" stroke="#B76E79" stroke-width="1.6"/>
+            <path d="M7 14l2-2 3 3 2-2 3 3" fill="none" stroke="#B76E79" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 9.5a1.2 1.2 0 1 0 0-.1" fill="none" stroke="#B76E79" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h2>Browse Gallery</h2> <!-- section title -->
+      </div>
+
+      <div class="cd-grid" id="galleryGrid">
+        <!-- Gallery item 1 -->
+        <button class="cd-tile" type="button"
+          data-design="Traditional Mehndi"
+          data-src="../assets/img/gallery-traditional.png"
+          aria-pressed="false">
+          <img src="../assets/img/gallery-traditional.png" alt="Traditional Mehndi" />
+          <span class="cd-overlay"><span>Traditional Mehndi</span></span>
+        </button>
+
+        <!-- Gallery item 2 -->
+        <button class="cd-tile" type="button"
+          data-design="Floral Pattern"
+          data-src="../assets/img/gallery-floral.png"
+          aria-pressed="false">
+          <img src="../assets/img/gallery-floral.png" alt="Floral Pattern" />
+          <span class="cd-overlay"><span>Floral Pattern</span></span>
+        </button>
+
+        <!-- Gallery item 3 -->
+        <button class="cd-tile" type="button"
+          data-design="Bridal Design"
+          data-src="../assets/img/gallery-bridal.png"
+          aria-pressed="false">
+          <img src="../assets/img/gallery-bridal.png" alt="Bridal Design" />
+          <span class="cd-overlay"><span>Bridal Design</span></span>
+        </button>
+
+        <!-- Gallery item 4 -->
+        <button class="cd-tile" type="button"
+          data-design="Arabic Style"
+          data-src="../assets/img/gallery-arabic.png"
+          aria-pressed="false">
+          <img src="../assets/img/gallery-arabic.png" alt="Arabic Style" />
+          <span class="cd-overlay"><span>Arabic Style</span></span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom bar -->
+  <footer class="zeena-bottom">
+
+    <!-- Preview button -->
+    <button id="previewBtn" class="zeena-preview-btn hidden" type="button">
+      Preview on your hand
+      <span class="preview-badge hidden">✓</span> <!-- preview badge -->
+    </button>
+
+    <!-- Submit button -->
+    <button id="submitBtn" class="zeena-continue" type="button" disabled>
+      Submit Request
+    </button>
+
+  </footer>
+
+  <!-- Toast message -->
+  <div id="toastMessage" class="toast hidden"></div>
+
+  <!-- JS file -->
+  <script src="../js/choose-design.js?v=7" defer></script>
+</body>
+</html>

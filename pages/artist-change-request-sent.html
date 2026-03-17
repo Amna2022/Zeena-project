@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Message Sent | Zeena</title>
+
+  <!-- shared + page-specific styles -->
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/artist-change-request-sent.css" />
+</head>
+
+<body class="sent">
+
+<script>
+  // basic client-side route protection (demo purpose)
+  if (sessionStorage.getItem("zeena_artist_logged_in") !== "true") {
+    window.location.href = "./artist-login.html";
+  }
+</script>
+
+<header class="sent__header">
+  <button class="sent__back" onclick="history.back()">←</button> <!-- navigate back -->
+  <h1>Request Sent</h1>
+</header>
+
+<main class="sent__content">
+
+  <!-- success feedback -->
+  <section class="sent__hero">
+    <div class="sent__badge" aria-hidden="true">✓</div>
+    <h2>Message sent to client</h2>
+    <p>
+      The client will receive your message via WhatsApp and can reply with their preference.
+      <!-- WhatsApp interaction handled in previous step -->
+    </p>
+  </section>
+
+  <!-- booking summary -->
+  <section class="sent__card">
+    <h3>Summary</h3>
+
+    <div class="sent__row">
+      <span class="k">Client:</span> <span class="v" id="s_name">—</span>
+    </div>
+
+    <div class="sent__row">
+      <span class="k">Date:</span> <span class="v" id="s_date">—</span>
+    </div>
+
+    <div class="sent__row">
+      <span class="k">Time:</span> <span class="v" id="s_time">—</span>
+    </div>
+
+    <div class="sent__msg">
+      <p class="k">Your message:</p>
+      <p class="v" id="s_msg">—</p> <!-- populated from stored booking data -->
+    </div>
+  </section>
+
+  <!-- navigation actions -->
+  <div class="sent__actions">
+    <a class="sent__btnPrimary" href="./artist-booking-details.html">Back to Details</a>
+    <a class="sent__btnGhost" href="./artist-dashboard.html">Back to Dashboard</a>
+  </div>
+
+</main>
+
+<script src="../js/artist-change-request-sent.js"></script>
+</body>
+</html>

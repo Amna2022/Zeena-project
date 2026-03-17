@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zeena</title>
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Gabriela&family=Itim&family=Kalam:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/pages.css" />
+</head>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const link = document.getElementById("startBookingLink");
+    if (!link) return;    // Safety check to ensure the element exists
+
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+
+    // Clear any existing booking data from localStorage
+      localStorage.removeItem("zeena_selected_availability");
+      localStorage.removeItem("zeena_booking_details");
+      localStorage.removeItem("zeena_design_choice");
+      localStorage.removeItem("bookingConfirmed");
+
+      window.location.href = link.getAttribute("href");
+    });
+  });
+</script>
+
+<body class="landing">
+  <main class="landing__wrap">
+    <section class="landing__card" aria-label="Zeena landing">   
+
+      <div class="landing__orb">
+        <img class="landing__logo" src="./assets/img/zeena-logo.png" alt="Zeena logo" />
+      </div>  
+
+      <h1 class="landing__title">ZEENA</h1>
+
+      <p class="landing__desc">
+        Book your henna appointment with ease. Browse designs, select your preferred time,
+        and let us bring your vision to life.
+      </p>
+
+      <a class="btn btn--primary" id="startBookingLink" href="./pages/select-availability.html">  
+  Book Appointment
+</a>  
+      <a class="landing__link" href="./pages/artist-login.html">Artist Login</a>  
+
+    </section>
+  </main>
+</body>
+</html>

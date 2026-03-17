@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Booking Declined | Zeena</title>
+
+  <!-- page uses shared styles + page-specific styling for state feedback -->
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/artist-decline-confirmed.css" />
+</head>
+
+<body class="dc">
+
+<script>
+  // protect route: artist-only page (simple client-side guard)
+  if (sessionStorage.getItem("zeena_artist_logged_in") !== "true") {
+    window.location.href = "./artist-login.html";
+  }
+</script>
+
+<header class="dc__header">
+  <a class="dc__back" href="./artist-booking-details.html">← <span>Back</span></a>
+  <h1>Booking Updated</h1> <!-- generic title reused for different states -->
+</header>
+
+<main class="dc__content">
+
+  <section class="dc__hero">
+    <div class="dc__badge">!</div> 
+    <!-- visual indicator instead of relying only on text (faster user recognition) -->
+
+    <h2>Booking Declined</h2>
+
+    <p>
+      The client has been notified via WhatsApp.
+      <!-- assumes external communication is triggered elsewhere (not in this page) -->
+    </p>
+  </section>
+
+  <div class="dc__actions">
+    <!-- primary action = return to dashboard (main workflow) -->
+    <a class="dc__btnPrimary" href="./artist-dashboard.html">Back to Dashboard</a>
+
+    <!-- secondary action = go back to details if needed -->
+    <a class="dc__btnGhost" href="./artist-booking-details.html">Back to Details</a>
+  </div>
+
+</main>
+
+</body>
+</html>

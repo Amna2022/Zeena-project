@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /> <!-- charset -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- responsive -->
+  <title>Request Changes | Zeena</title> <!-- page title -->
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/artist-request-changes.css" />
+</head>
+
+<body class="req">
+
+<!-- ---------- Auth check ---------- -->
+<script>
+  if (sessionStorage.getItem("zeena_artist_logged_in") !== "true") {
+    window.location.href = "./artist-login.html"; // redirect if not logged in
+  }
+</script>
+
+<!-- ---------- Header ---------- -->
+<header class="req__header">
+  <a class="req__back" href="./artist-booking-details.html">← <span>Back</span></a> <!-- back button -->
+  <h1>Request Changes</h1> <!-- page title -->
+</header>
+
+<!-- ---------- Main content ---------- -->
+<main class="req__content">
+
+  <!-- ---------- Current Booking ---------- -->
+  <section class="req__card">
+    <h2>Current Booking</h2> <!-- section title -->
+
+    <div class="req__grid">
+      <p class="k">Client:</p><p class="v" id="b_client">—</p> <!-- client -->
+      <p class="k">Date:</p><p class="v" id="b_date">—</p> <!-- date -->
+      <p class="k">Time:</p><p class="v" id="b_time">—</p> <!-- time -->
+      <p class="k">Design:</p><p class="v" id="b_design">—</p> <!-- design -->
+    </div>
+  </section>
+
+  <!-- ---------- Message ---------- -->
+  <section class="req__card">
+    <h3>What changes would you like to request?</h3> <!-- section title -->
+
+    <textarea id="msg" class="req__textarea" rows="8"
+      placeholder="Example: Hi Sarah! The date you selected is fully booked. Would you be available on February 16th at 3:00 PM instead? Also, the Bridal Full Hand design typically takes 4 hours and costs £150."></textarea>
+      <!-- message input -->
+
+    <div class="req__actions">
+      <button class="req__btnGhost" id="cancelBtn" type="button">Cancel</button> <!-- cancel -->
+      <button class="req__btnPrimary" id="sendBtn" type="button">Send to Client</button> <!-- send -->
+    </div>
+  </section>
+
+  <!-- ---------- Hint ---------- -->
+  <p class="req__hint">
+    The client will receive your message via WhatsApp and can respond with their preference
+  </p> <!-- info text -->
+
+</main>
+
+<!-- JS file -->
+<script src="../js/artist-request-changes.js"></script>
+</body>
+</html>

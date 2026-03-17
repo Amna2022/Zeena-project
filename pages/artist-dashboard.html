@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zeena Dashboard</title>
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- main styles -->
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/artist-dashboard.css" />
+</head>
+
+<body class="dash">
+  <!-- simple login check for demo -->
+  <script>
+    if (sessionStorage.getItem("zeena_artist_logged_in") !== "true") {
+      window.location.href = "./artist-login.html";
+    }
+  </script>
+
+  <header class="dash__topbar">
+    <div class="dash__brand">
+      <div class="dash__logoWrap" aria-hidden="true">
+        <img class="dash__logo" src="../assets/img/zeena-logo.png" alt="" />
+      </div>
+
+      <h1 class="dash__title">
+        Zeena<br />
+        Dashboard
+      </h1>
+    </div>
+
+    <button class="dash__logout" id="logoutBtn" type="button">
+      <span class="dash__logoutIcon" aria-hidden="true">↩</span>
+      <span>Logout</span>
+    </button>
+  </header>
+
+  <main class="dash__content">
+
+    <!-- booking summary -->
+    <section class="dash__kpiGrid" aria-label="Booking summary">
+      <section class="dash__kpi">
+        <div class="dash__kpiText">
+          <p class="dash__kpiLabel">Pending Requests</p>
+          <p class="dash__kpiValue" id="pendingCount">0</p>
+        </div>
+
+        <div class="dash__kpiIcon" aria-hidden="true">📩</div>
+      </section>
+
+      <section class="dash__kpi">
+        <div class="dash__kpiText">
+          <p class="dash__kpiLabel">Accepted Bookings</p>
+          <p class="dash__kpiValue" id="acceptedCount">0</p>
+        </div>
+
+        <div class="dash__kpiIcon" aria-hidden="true">✅</div>
+      </section>
+
+      <section class="dash__kpi">
+        <div class="dash__kpiText">
+          <p class="dash__kpiLabel">Declined Bookings</p>
+          <p class="dash__kpiValue" id="declinedCount">0</p>
+        </div>
+
+        <div class="dash__kpiIcon" aria-hidden="true">❌</div>
+      </section>
+
+      <section class="dash__kpi">
+        <div class="dash__kpiText">
+          <p class="dash__kpiLabel">Change Requested</p>
+          <p class="dash__kpiValue" id="changeCount">0</p>
+        </div>
+
+        <div class="dash__kpiIcon" aria-hidden="true">✏️</div>
+      </section>
+    </section>
+
+    <!-- pending bookings -->
+    <section class="dash__card" aria-label="Pending booking requests">
+      <div class="dash__cardHeader">
+        <h2 class="dash__cardTitle">Pending Booking Requests</h2>
+      </div>
+
+      <ul class="dash__list" id="pendingRequestsList"></ul>
+    </section>
+
+    <!-- accepted bookings -->
+    <section class="dash__card" aria-label="Accepted bookings">
+      <div class="dash__cardHeader">
+        <h2 class="dash__cardTitle">Accepted Bookings</h2>
+      </div>
+
+      <ul class="dash__list" id="acceptedRequestsList"></ul>
+    </section>
+
+    <!-- declined bookings -->
+    <section class="dash__card" aria-label="Declined bookings">
+      <div class="dash__cardHeader">
+        <h2 class="dash__cardTitle">Declined Bookings</h2>
+      </div>
+
+      <ul class="dash__list" id="declinedRequestsList"></ul>
+    </section>
+
+    <!-- bookings with change request -->
+    <section class="dash__card" aria-label="Change requested bookings">
+      <div class="dash__cardHeader">
+        <h2 class="dash__cardTitle">Change Requested</h2>
+      </div>
+
+      <ul class="dash__list" id="changeRequestsList"></ul>
+    </section>
+
+  </main>
+
+  <script src="../js/artist-dashboard.js"></script>
+</body>
+</html>

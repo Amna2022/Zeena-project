@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zeena — Select Availability</title>
+
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+</head>
+
+<body class="zeena zeena-availability">
+  <!-- Top bar -->
+  <header class="zeena-topbar">
+    <button class="zeena-icon-btn" type="button" aria-label="Back" onclick="history.back()">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 18l-6-6 6-6" fill="none" stroke="#3D2C2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="zeena-title">
+      <span class="zeena-title-icon" aria-hidden="true">
+        <!-- calendar icon -->
+        <svg width="20" height="20" viewBox="0 0 24 24">
+          <path d="M7 2v3M17 2v3M4 7h16M6 10h4M6 14h4M6 18h4M14 10h4M14 14h4M14 18h4"
+            fill="none" stroke="#B76E79" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <h1>Select Availability</h1>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="zeena-content">
+    <p class="zeena-hint">
+      Choose your preferred date and time for appointment. Henna might take 1-2 hours depends on design.
+    </p>
+
+    <section id="slotsList" class="zeena-cards" aria-label="Availability list"></section>
+  </main>
+
+  <!-- Bottom bar -->
+  <footer class="zeena-bottom">
+    <button id="continueBtn" class="zeena-continue" type="button" disabled>
+      Continue
+    </button>
+  </footer>
+
+  <script src="../js/select-availability.js?v=20" defer></script>
+</body>
+</html>

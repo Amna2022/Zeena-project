@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Booking Details | Zeena</title>
+
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/artist-booking-details.css" />
+</head>
+
+<body class="details">
+
+<script>
+  if (sessionStorage.getItem("zeena_artist_logged_in") !== "true") {
+    window.location.href = "./artist-login.html";
+  }
+</script>
+
+<header class="details__header">
+  <button onclick="history.back()" class="details__back">←</button>
+  <h1>Booking Details</h1>
+</header>
+
+<main class="details__content">
+
+  <div class="details__status">PENDING</div>
+
+  <!-- Client -->
+  <section class="details__card">
+    <h2>Client Information</h2>
+    <p class="label">Name</p>
+    <p id="name"></p>
+
+    <p class="label">WhatsApp Number</p>
+    <p id="phone"></p>
+  </section>
+
+  <!-- Appointment -->
+  <section class="details__card">
+    <h2>Appointment Details</h2>
+    <p class="label">Date</p>
+    <p id="date"></p>
+
+    <p class="label">Time</p>
+    <p id="time"></p>
+  </section>
+
+  <!-- Service -->
+  <section class="details__card">
+    <h2>Service Details</h2>
+    <p class="label">Location</p>
+    <p id="location"></p>
+
+    <p class="label">Service Location</p>
+    <p id="serviceLocation"></p>
+
+    <p class="label">Payment Method</p>
+    <p id="payment"></p>
+  </section>
+
+  <!-- Image -->
+  <section class="details__card">
+    <h2>Design Preview</h2>
+    <img id="designImg" class="details__img" />
+  </section>
+
+  <!-- Notes -->
+  <section class="details__card">
+    <h2>Additional Notes</h2>
+    <p id="notes"></p>
+  </section>
+
+  <!-- Actions -->
+  <div class="details__actions">
+    <button class="btn accept">Accept</button>
+    <button class="btn change">Request Changes</button>
+    <button class="btn btn--decline" id="declineBtn" type="button">Decline</button>
+  </div>
+
+  <!-- Quick Contact -->
+  <section class="details__contact">
+    <h2>Quick Contact</h2>
+    <div class="details__contactBtns">
+      <a id="whatsappBtn" target="_blank">WhatsApp</a>
+      <a id="instagramBtn" href="https:Instagram.com/moonyy8889" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+  </section>
+
+</main>
+
+<script src="../js/artist-booking-details.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /> <!-- charset -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- responsive -->
+  <title>Zeena — Booking Details</title> <!-- page title -->
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+</head>
+
+<body class="zeena zeena-booking-details">
+  <!-- Top bar -->
+  <header class="zeena-topbar">
+    <button class="zeena-icon-btn" type="button" aria-label="Back" onclick="history.back()">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 18l-6-6 6-6" fill="none" stroke="#3D2C2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="zeena-title">
+      <h1>Booking Details</h1> <!-- heading -->
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="zeena-content">
+    <form id="bookingForm" class="bd-form" autocomplete="off"> <!-- booking form -->
+
+      <!-- ---------- Name ---------- -->
+      <div class="bd-field">
+        <label class="bd-label" for="fullName">
+          <span class="bd-ico" aria-hidden="true">
+            <!-- user icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z" fill="none" stroke="#B76E79" stroke-width="1.6"/>
+              <path d="M4 20a8 8 0 0 1 16 0" fill="none" stroke="#B76E79" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="bd-label-text">Name</span> <!-- label -->
+          <span class="bd-required" aria-hidden="true">*</span> <!-- required -->
+        </label>
+        <input id="fullName" name="fullName" class="bd-input" type="text" placeholder="Enter your full name" required /> <!-- input -->
+      </div>
+
+      <!-- ---------- WhatsApp ---------- -->
+      <div class="bd-field">
+        <label class="bd-label" for="whatsApp">
+          <span class="bd-ico" aria-hidden="true">
+            <!-- phone icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <path d="M20 11a8 8 0 1 1-3.3-6.5" fill="none" stroke="#B76E79" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M8 21l1.2-3.5" fill="none" stroke="#B76E79" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M9 10c1.5 3.5 3.5 5.5 7 7" fill="none" stroke="#B76E79" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="bd-label-text">WhatsApp Number</span>
+          <span class="bd-required" aria-hidden="true">*</span>
+        </label>
+
+        <input id="whatsApp" name="whatsApp" class="bd-input" type="tel" placeholder="+44 7xxx xxxxxx" required /> <!-- phone input -->
+        <p id="whatsAppError" class="bd-error"></p> <!-- error message -->
+      </div>
+
+      <!-- ---------- Area ---------- -->
+      <div class="bd-field">
+        <label class="bd-label" for="area">
+          <span class="bd-ico" aria-hidden="true">
+            <!-- location icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12Z" fill="none" stroke="#B76E79" stroke-width="1.6"/>
+              <path d="M12 11a2 2 0 1 0-2-2 2 2 0 0 0 2 2Z" fill="none" stroke="#B76E79" stroke-width="1.6"/>
+            </svg>
+          </span>
+          <span class="bd-label-text">Area or Address</span>
+          <span class="bd-required" aria-hidden="true">*</span>
+        </label>
+        <input id="area" name="area" class="bd-input" type="text" placeholder="Enter your area or full address" required /> <!-- address input -->
+      </div>
+
+      <!-- ---------- Service Location ---------- -->
+      <div class="bd-field">
+        <div class="bd-row-title">
+          <span class="bd-label-text">Service Location</span>
+          <span class="bd-required" aria-hidden="true">*</span>
+        </div>
+
+        <div class="bd-grid2" role="group" aria-label="Service location">
+          <button type="button" class="bd-choice" data-choice-group="serviceLocation" data-value="At Home" aria-pressed="false">
+            At Home <!-- option -->
+          </button>
+          <button type="button" class="bd-choice" data-choice-group="serviceLocation" data-value="At Your Location" aria-pressed="false">
+            At Your Location <!-- option -->
+          </button>
+        </div>
+
+        <input type="hidden" id="serviceLocation" name="serviceLocation" required /> <!-- hidden value -->
+      </div>
+
+      <!-- ---------- Payment Method ---------- -->
+      <div class="bd-field">
+        <label class="bd-label" for="paymentMethodHidden">
+          <span class="bd-ico" aria-hidden="true">
+            <!-- card icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <path d="M4 7h16v10H4z" fill="none" stroke="#B76E79" stroke-width="1.6"/>
+              <path d="M4 10h16" fill="none" stroke="#B76E79" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="bd-label-text">Payment Method</span>
+          <span class="bd-required" aria-hidden="true">*</span>
+        </label>
+
+        <div class="bd-grid2" role="group" aria-label="Payment method">
+          <button type="button" class="bd-choice" data-choice-group="paymentMethod" data-value="Cash" aria-pressed="false">
+            Cash <!-- option -->
+          </button>
+          <button type="button" class="bd-choice" data-choice-group="paymentMethod" data-value="Bank Transfer" aria-pressed="false">
+            Bank Transfer <!-- option -->
+          </button>
+        </div>
+
+        <input type="hidden" id="paymentMethodHidden" name="paymentMethod" required /> <!-- hidden value -->
+      </div>
+
+      <!-- ---------- Notes ---------- -->
+      <div class="bd-field">
+        <label class="bd-label muted" for="notes">
+          <span class="bd-label-text">Additional Notes (Optional)</span>
+        </label>
+        <textarea id="notes" name="notes" class="bd-textarea" rows="5" placeholder="Any special requests or preferences..."></textarea> <!-- textarea -->
+      </div>
+
+    </form>
+  </main>
+
+  <!-- Bottom bar -->
+  <footer class="zeena-bottom">
+    <button id="nextBtn" class="zeena-continue" type="button" disabled>
+      Next <!-- next step -->
+    </button>
+  </footer>
+
+  <!-- JS file -->
+  <script src="../js/booking-details.js?v=2" defer></script>
+</body>
+</html>

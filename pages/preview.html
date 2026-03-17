@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zeena — Preview</title>
+
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+
+  <style>
+  /* ========= Preview page layout ========= */
+  .preview-container { padding: 16px; }
+
+  .preview-upload {
+    border: 2px dashed #E8B4B8;
+    border-radius: 16px;
+    padding: 18px;
+    text-align: center;
+    margin-bottom: 14px;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(61,44,46,0.06);
+  }
+
+  .preview-upload .hint {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #7A6A6C;
+  }
+
+  .preview-area {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #FAF3F4;
+    box-shadow: 0 6px 16px rgba(61,44,46,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .preview-area img.hand {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .preview-area img.design {
+    position: absolute;
+    width: 140px;
+    touch-action: none;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+    opacity: 0.95;
+    z-index: 2;
+    display: block;
+    mix-blend-mode: multiply;
+    filter: drop-shadow(0 6px 10px rgba(61,44,46,0.18));
+  }
+
+  .preview-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .preview-controls button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 14px;
+    border: 1px solid #E8B4B8;
+    background: #fff;
+    color: #B76E79;
+    font-size: 14px;
+  }
+
+  .preview-tip {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #7A6A6C;
+    text-align: center;
+  }
+
+  /* ========= Common helpers (fixes your preview button issue too) ========= */
+  .hidden { display: none !important; }
+
+  /* ========= Choose-design footer button stacking (prevents button not showing/overlap) ========= */
+  .zeena-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* ========= Preview button styling for choose-design page (consistent Zeena system) ========= */
+  .zeena-preview-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 20px;
+    border: 1px solid #E8B4B8;
+    background: #fff;
+    color: #B76E79;
+    font-size: 14px;
+  }
+
+  .zeena-preview-btn:active {
+    transform: scale(0.99);
+  }
+
+  .preview-badge {
+    margin-left: 8px;
+    font-size: 12px;
+    background: #B76E79;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 10px;
+    vertical-align: middle;
+  }
+
+  .zeena-preview-btn.is-used {
+    background: #E8B4B8;
+    color: #fff;
+    border-color: #E8B4B8;
+  }
+</style>
+</head>
+
+<body class="zeena">
+  <!-- Top bar -->
+  <header class="zeena-topbar">
+    <button class="zeena-icon-btn" type="button" aria-label="Back" onclick="history.back()">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 18l-6-6 6-6" fill="none" stroke="#3D2C2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="zeena-title">
+      <h1>Preview on your hand</h1>
+    </div>
+  </header>
+
+  <main class="preview-container">
+    <!-- Upload hand -->
+    <section class="preview-upload">
+      <input type="file" id="handInput" accept="image/*" hidden />
+      <button id="uploadHandBtn" class="zeena-continue" type="button">
+        Upload your hand photo
+      </button>
+      <div class="hint">Tip: a clear photo in good lighting looks best.</div>
+    </section>
+
+    <!-- Preview area -->
+    <section class="preview-area" id="previewArea" aria-label="Preview area">
+      <img id="handImg" class="hand" hidden alt="Your hand photo" />
+      <img id="designImg" class="design" hidden alt="Selected henna design overlay" />
+    </section>
+
+    <!-- Controls -->
+    <div class="preview-controls">
+      <button id="zoomOut" type="button">Zoom -</button>
+      <button id="reset" type="button">Reset</button>
+      <button id="zoomIn" type="button">Zoom +</button>
+      <button id="rotate" type="button">⟳</button>
+    </div>
+
+    <div class="preview-tip">Drag the design to position it.</div>
+  </main>
+
+  <!-- Bottom -->
+  <footer class="zeena-bottom">
+  <button id="previewBtn" class="zeena-preview-btn hidden" type="button">
+    <span class="preview-label">Preview on your hand</span>
+    <span class="preview-badge hidden">✓</span>
+  </button>
+
+  <button id="submitBtn" class="zeena-continue" type="button" disabled>
+    Submit Request
+  </button>
+</footer>
+
+<!-- IMPORTANT: bump version to break cache -->
+<script src="../js/choose-design.js?v=5" defer></script>
+
+<script>
+  const handInput = document.getElementById("handInput");
+  const uploadHandBtn = document.getElementById("uploadHandBtn");
+  const handImg = document.getElementById("handImg");
+  const designImg = document.getElementById("designImg");
+  const useDesignBtn = document.getElementById("useDesignBtn");
+
+  const zoomInBtn = document.getElementById("zoomIn");
+  const zoomOutBtn = document.getElementById("zoomOut");
+  const rotateBtn = document.getElementById("rotate");
+  const resetBtn = document.getElementById("reset");
+
+  // ---- State (لازم تتعرف قبل أي استخدام)
+  let scale = 1;
+  let rotation = 0; // degrees
+  let posX = 0;
+  let posY = 0;
+
+  // ---- Helpers
+  function safeParse(key) {
+    const raw = localStorage.getItem(key);
+    if (!raw) return null;
+    try { return JSON.parse(raw); } catch { return null; }
+  }
+
+  function clampScale(v) {
+    return Math.min(2.5, Math.max(0.4, v));
+  }
+
+  function updateTransform() {
+    if (!designImg) return;
+    designImg.style.transform =
+      `translate(${posX}px, ${posY}px) rotate(${rotation}deg) scale(${scale})`;
+  }
+
+  // ✅ 1) Load selected design (المفقود عندك)
+  // primary key
+  let saved = safeParse("zeena_preview_design");
+  // fallback key (لو دخلتي الصفحة مباشرة أو حصل overwrite)
+  if (!saved) saved = safeParse("zeena_design_choice");
+
+  if (saved && saved.src && designImg) {
+    designImg.src = saved.src;
+    designImg.hidden = false;
+
+    // safety: ensure overlay above hand even if CSS changed
+    designImg.style.position = "absolute";
+    designImg.style.zIndex = "2";
+    designImg.style.display = "block";
+  } else {
+    console.warn("No design found in localStorage (zeena_preview_design).");
+    // ما نرجع للخلف عشان تشوفي الصفحة بدل ما تختفي
+  }
+
+  // ✅ 2) Restore transform (بعد تعريف state)
+  const savedTransform = safeParse("zeena_preview_transform");
+  if (savedTransform) {
+    scale = savedTransform.scale ?? 1;
+    rotation = savedTransform.rotation ?? 0;
+    posX = savedTransform.posX ?? 0;
+    posY = savedTransform.posY ?? 0;
+  }
+
+  // ---- Upload hand
+  uploadHandBtn?.addEventListener("click", () => handInput?.click());
+
+  handInput?.addEventListener("change", (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    const url = URL.createObjectURL(file);
+    handImg.src = url;
+    handImg.hidden = false;
+
+    // make sure hand is behind design
+    handImg.style.position = "absolute";
+    handImg.style.inset = "0";
+    handImg.style.zIndex = "1";
+
+    useDesignBtn.disabled = false;
+  });
+
+  // ---- Buttons
+  zoomInBtn?.addEventListener("click", () => {
+    scale = clampScale(scale + 0.1);
+    updateTransform();
+  });
+
+  zoomOutBtn?.addEventListener("click", () => {
+    scale = clampScale(scale - 0.1);
+    updateTransform();
+  });
+
+  rotateBtn?.addEventListener("click", () => {
+    rotation = (rotation + 15) % 360;
+    updateTransform();
+  });
+
+  resetBtn?.addEventListener("click", () => {
+    scale = 1;
+    rotation = 0;
+    posX = 0;
+    posY = 0;
+    updateTransform();
+  });
+
+  // ---- Drag (works desktop + mobile)
+  let dragging = false;
+  let lastX = 0;
+  let lastY = 0;
+
+  designImg?.addEventListener("pointerdown", (e) => {
+    dragging = true;
+    designImg.setPointerCapture(e.pointerId);
+    lastX = e.clientX;
+    lastY = e.clientY;
+    designImg.style.cursor = "grabbing";
+  });
+
+  designImg?.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+
+    const dx = e.clientX - lastX;
+    const dy = e.clientY - lastY;
+    lastX = e.clientX;
+    lastY = e.clientY;
+
+    posX += dx;
+    posY += dy;
+    updateTransform();
+  });
+
+  function stopDrag() {
+    dragging = false;
+    if (designImg) designImg.style.cursor = "grab";
+  }
+
+  designImg?.addEventListener("pointerup", stopDrag);
+  designImg?.addEventListener("pointercancel", stopDrag);
+
+  // ---- Save usage
+  useDesignBtn?.addEventListener("click", () => {
+    localStorage.setItem("zeena_preview_used", "true");
+    localStorage.setItem(
+      "zeena_preview_transform",
+      JSON.stringify({ scale, rotation, posX, posY })
+    );
+    history.back();
+  });
+
+  // init
+  updateTransform();
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/*  CSS variables for colors, fonts, sizes, and other design tokens */
+:root{
+  --c-title:#4C0A0F;
+  --c-body:#4C3133;
+  --c-link: rgba(78.46, 11.51, 18.07, 0.91);
+  --c-btn: rgba(255,255,255,0.75);
+
+  --ff-title: "Fleur De Leah", cursive;
+  --ff-body: "Kalam", cursive;
+  --ff-btn: "Gabriela", serif;
+  --ff-link: "Itim", cursive;
+
+  --fs-title: 48px;
+  --lh-title: 55px;
+  --ls-title: 8px;
+
+  --fs-body: 18px;
+  --lh-body: 28.8px;
+
+  --fs-btn: 20px;
+  --lh-btn: 24px;
+  --ls-btn: 0.8px;
+
+  --fs-link: 24px;
+  --lh-link: 28px;
+
+  --shadow-btn-text: 0px 4px 4px rgba(0,0,0,0.25);
+
+  --r-card: 18px;
+  --r-btn: 14px;
+}
+
+/*  allow full page scrolling */
+html, body {
+  height: 100%;
+}
+
+body {
+  overflow-y: auto;
+}
+
+/* In case a wrapper is blocking scroll */
+.zeena,
+.zeena-choose-design {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
+}
+
+button, a, input[type="submit"] {
+  cursor: pointer;
+}

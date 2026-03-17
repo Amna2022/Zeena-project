@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /> <!-- charset -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- responsive -->
+  <title>Artist Login | Zeena</title> <!-- page title -->
+
+  <!-- ---------- Fonts ---------- -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- connect faster -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Gabriela&family=Itim&family=Kalam:wght@700&display=swap" rel="stylesheet"> <!-- font styles -->
+
+  <!-- ---------- CSS ---------- -->
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/artist-login.css" />
+</head>
+
+<body class="landing">
+  <main class="landing__wrap">
+
+    <!-- ---------- Login Card ---------- -->
+    <section class="landing__card artistLogin" aria-label="Artist login">
+
+      <a class="artistLogin__back" href="../index.html" aria-label="Back to Home">
+        ← Back to Home <!-- back link -->
+      </a>
+
+      <!-- Logo -->
+      <div class="landing__orb artistLogin__orb">
+        <img class="landing__logo" src="../assets/img/zeena-logo.png" alt="Zeena logo" /> <!-- logo -->
+      </div>
+
+      <!-- Title -->
+      <h1 class="landing__title artistLogin__title">Artist Login</h1>
+      <p class="landing__desc artistLogin__desc">Access your booking dashboard</p> <!-- subtitle -->
+
+      <!-- ---------- Form ---------- -->
+      <form id="artistLoginForm" class="artistLogin__form" novalidate>
+
+        <!-- Username -->
+        <label class="artistLogin__label" for="artistUsername">Username</label>
+        <input
+          id="artistUsername"
+          class="artistLogin__input"
+          type="text"
+          placeholder="Enter your username"
+          autocomplete="username"
+          required
+        />
+        <p class="artistLogin__error" id="userErr" aria-live="polite"></p> <!-- username error -->
+
+        <!-- Password -->
+        <label class="artistLogin__label" for="artistPassword">Password</label>
+        <div class="artistLogin__pwRow">
+          <input
+            id="artistPassword"
+            class="artistLogin__input"
+            type="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+            minlength="6"
+          />
+          <button type="button" class="artistLogin__ghost" id="togglePw">Show</button> <!-- show/hide -->
+        </div>
+        <p class="artistLogin__error" id="passErr" aria-live="polite"></p> <!-- password error -->
+
+        <!-- General error -->
+        <p class="artistLogin__errorText" id="loginGeneralError" aria-live="polite"></p>
+
+        <!-- Submit -->
+        <button class="btn btn--primary" id="loginBtn" type="submit">Login</button> <!-- login button -->
+
+        <!-- Hint -->
+        <p class="artistLogin__hint" id="hint" aria-live="polite"></p> <!-- success message -->
+
+      </form>
+
+    </section>
+  </main>
+
+  <!-- JS file -->
+  <script src="../js/artist-login.js"></script>
+</body>
+</html>

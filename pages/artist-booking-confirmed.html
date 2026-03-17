@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Booking Confirmed | Zeena</title>
+
+  <!-- shared styles + confirmation page styles -->
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/artist-booking-confirmed.css" />
+</head>
+
+<body class="confirm">
+
+<script>
+  // basic client-side check (not secure, for demo flow)
+  if (sessionStorage.getItem("zeena_artist_logged_in") !== "true") {
+    window.location.href = "./artist-login.html";
+  }
+</script>
+
+<header class="confirm__header">
+  <button class="confirm__back" onclick="history.back()">←</button> <!-- quick navigation -->
+  <h1>Booking Confirmed</h1>
+</header>
+
+<main class="confirm__content">
+
+  <!-- success state -->
+  <section class="confirm__hero">
+    <div class="confirm__check" aria-hidden="true">
+      <img src="../assets/icons/Icon%20(43).svg" alt="" />
+    </div>
+
+    <h2>Booking Accepted!</h2>
+    <p>
+      The client has been notified via WhatsApp
+      <!-- notification handled in previous action -->
+    </p>
+  </section>
+
+  <!-- booking details -->
+  <section class="confirm__card">
+    <div class="confirm__cardTop">
+      <h3>Booking Summary</h3>
+    </div>
+
+    <div class="confirm__rows">
+
+      <div class="confirm__row">
+        <span class="confirm__icon"><img src="../assets/icons/Icon%20(23).svg" alt=""></span>
+        <div>
+          <p class="label">Client</p>
+          <p class="value" id="c_name">—</p>
+          <p class="sub" id="c_phone">—</p> <!-- filled from stored booking -->
+        </div>
+      </div>
+
+      <div class="confirm__row">
+        <span class="confirm__icon"><img src="../assets/icons/Icon%20(22).svg" alt=""></span>
+        <div>
+          <p class="label">Date &amp; Time</p>
+          <p class="value" id="c_date">—</p>
+          <p class="sub" id="c_time">—</p>
+        </div>
+      </div>
+
+      <div class="confirm__row">
+        <span class="confirm__icon"><img src="../assets/icons/Icon%20(31).svg" alt=""></span>
+        <div>
+          <p class="label">Location</p>
+          <p class="value" id="c_location">—</p>
+          <p class="sub" id="c_serviceLocation">—</p>
+        </div>
+      </div>
+
+      <div class="confirm__row">
+        <span class="confirm__icon"><img src="../assets/icons/Icon%20(32).svg" alt=""></span>
+        <div>
+          <p class="label">Payment Method</p>
+          <p class="value" id="c_payment">—</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- actions -->
+  <div class="confirm__actions">
+    <button class="confirm__btnPrimary" id="downloadIcsBtn" type="button">
+      <img src="../assets/icons/Icon%20(44).svg" alt="" aria-hidden="true">
+      Download Calendar File (ICS)
+    </button>
+
+    <a class="confirm__btnGhost" href="./artist-dashboard.html">Back to Dashboard</a>
+  </div>
+
+  <!-- guidance -->
+  <section class="confirm__note">
+    <p class="noteTitle">Next Steps:</p>
+    <p class="noteText">
+      The calendar file can be imported into your preferred calendar app (Google Calendar, Apple Calendar, Outlook, etc.)
+      to keep track of this appointment.
+      <!-- ICS used as a simple way to export booking details -->
+    </p>
+  </section>
+
+</main>
+
+<script src="../js/artist-booking-confirmed.js"></script>
+</body>
+</html>

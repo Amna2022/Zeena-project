@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Decline Booking | Zeena</title>
+
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/artist-decline-booking.css" />
+</head>
+
+<body class="decline">
+<script>
+  if (sessionStorage.getItem("zeena_artist_logged_in") !== "true") {
+    window.location.href = "./artist-login.html";
+  }
+</script>
+
+<header class="decline__header">
+  <a class="decline__back" href="./artist-booking-details.html">← <span>Back</span></a>
+  <h1>Decline Booking</h1>
+</header>
+
+<main class="decline__content">
+  <!-- warning box -->
+  <section class="decline__warn" role="alert">
+    <div class="decline__warnIcon">!</div>
+    <div>
+      <div class="decline__warnTitle">This action cannot be undone</div>
+      <div class="decline__warnText">
+        The client will be notified that their booking request has been declined
+      </div>
+    </div>
+  </section>
+
+  <!-- booking to decline -->
+  <section class="decline__card">
+    <h2>Booking to Decline</h2>
+    <div class="decline__rows">
+      <div class="row"><span class="k">Client:</span> <span class="v" id="d_client">—</span></div>
+      <div class="row"><span class="k">Date:</span> <span class="v" id="d_date">—</span></div>
+      <div class="row"><span class="k">Time:</span> <span class="v" id="d_time">—</span></div>
+      <div class="row"><span class="k">Design:</span> <span class="v" id="d_design">—</span></div>
+    </div>
+  </section>
+
+  <!-- reason -->
+  <section class="decline__card">
+    <h2>Reason for declining</h2>
+
+    <label class="decline__label" for="declineReason">
+      Write a short message to the client
+    </label>
+
+    <textarea
+      id="declineReason"
+      class="decline__textarea"
+      placeholder="Example: Thank you for your booking request. Unfortunately, I’m not available at this time. Please choose another available slot and I’ll be happy to help."
+      rows="7"
+    ></textarea>
+
+    <div class="decline__actions">
+      <a class="btnGhost" href="./artist-booking-details.html">Cancel</a>
+      <button class="btnDanger" id="confirmDeclineBtn">Confirm Decline</button>
+    </div>
+  </section>
+
+  <p class="decline__foot">
+    The client will receive your message via WhatsApp
+  </p>
+</main>
+
+<script src="../js/artist-decline-booking.js"></script>
+</body>
+</html>
