@@ -88,7 +88,7 @@
     text-align: center;
   }
 
-  /* ========= Common helpers (fixes your preview button issue too) ========= */
+  /* ========= Common helpers (fixes preview button issue ) ========= */
   .hidden { display: none !important; }
 
   /* ========= Choose-design footer button stacking (prevents button not showing/overlap) ========= */
@@ -98,7 +98,7 @@
     gap: 10px;
   }
 
-  /* ========= Preview button styling for choose-design page (consistent Zeena system) ========= */
+  /* ========= Preview button styling  ========= */
   .zeena-preview-btn {
     width: 100%;
     padding: 14px;
@@ -183,7 +183,7 @@
   </button>
 </footer>
 
-<!-- IMPORTANT: bump version to break cache -->
+<!--  bump version to break cache -->
 <script src="../js/choose-design.js?v=5" defer></script>
 
 <script>
@@ -198,7 +198,7 @@
   const rotateBtn = document.getElementById("rotate");
   const resetBtn = document.getElementById("reset");
 
-  // ---- State (لازم تتعرف قبل أي استخدام)
+  // ---- State
   let scale = 1;
   let rotation = 0; // degrees
   let posX = 0;
@@ -221,10 +221,10 @@
       `translate(${posX}px, ${posY}px) rotate(${rotation}deg) scale(${scale})`;
   }
 
-  // ✅ 1) Load selected design (المفقود عندك)
+  // ---- Load saved design + transform (if user came from choose-design or reloaded)
   // primary key
   let saved = safeParse("zeena_preview_design");
-  // fallback key (لو دخلتي الصفحة مباشرة أو حصل overwrite)
+  // fallback (for old preview button that didn't clear old key)
   if (!saved) saved = safeParse("zeena_design_choice");
 
   if (saved && saved.src && designImg) {
@@ -237,10 +237,10 @@
     designImg.style.display = "block";
   } else {
     console.warn("No design found in localStorage (zeena_preview_design).");
-    // ما نرجع للخلف عشان تشوفي الصفحة بدل ما تختفي
+    // Optionally, you could show a message to the user here or redirect back to choose-design.
   }
 
-  // ✅ 2) Restore transform (بعد تعريف state)
+  // load saved transform (if exists)
   const savedTransform = safeParse("zeena_preview_transform");
   if (savedTransform) {
     scale = savedTransform.scale ?? 1;
