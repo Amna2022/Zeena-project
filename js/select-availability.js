@@ -51,6 +51,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function render(groups){ 
 
+    const hasSlots = groups.some(group => group.slots.length > 0);
+
+    if (!hasSlots) {
+      slotsList.innerHTML = `
+      <section class="zeena-card">
+        <h2 class="zeena-day">No available times</h2>
+        <p class="zeena-date">
+          There are no available slots at the moment. Please try again later.
+        </p>
+      </section>
+      `;
+      return;
+    }
+
     slotsList.innerHTML = groups.map(group=>{ // render grouped slots
 
       if(group.slots.length===0) return ""; 
@@ -101,28 +115,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function loadSlots(){ // load available slots
 
-    const dates = next7days();
+    try {
+      slotsList.innerHTML = `
+      <section class="zeena-card">
+        <p class="zeena-date">Loading available times...</p>
+      </section>
+      `;
 
-    const responses = await Promise.all(
-      dates.map(d=>fetch(`${API_BASE}/timeslots?date=${d}`))
-    ); // fetch each day
+      const dates = next7days();
 
-    const results = await Promise.all(
-      responses.map(r=>r.json())
-    ); // parse responses
+      const responses = await Promise.all(
+        dates.map(d=>fetch(`${API_BASE}/timeslots?date=${d}`))
+      ); // fetch each day
 
-    const groups = results.map((slots,i)=>{
+      const results = await Promise.all(
+        responses.map(r=>r.json())
+      ); // parse responses
 
-      const available = slots.filter(s=>s.available); // keep only available slots
+      const groups = results.map((slots,i)=>{
 
-      return {
-        date:dates[i],
-        slots:available
-      };
+        const available = slots.filter(s=>s.available); // keep only available slots
 
-    });
+        return {
+          date:dates[i],
+          slots:available
+        };
 
-    render(groups);
+      });
+
+      render(groups);
+
+    } catch (err) {
+      console.error("Could not load available slots:", err);
+
+      slotsList.innerHTML = `
+      <section class="zeena-card">
+        <h2 class="zeena-day">Could not load availability</h2>
+        <p class="zeena-date">
+          Please make sure the backend server is running and try again.
+        </p>
+      </section>
+      `;
+    }
 
   }
 

@@ -168,8 +168,10 @@ document.addEventListener("DOMContentLoaded", () => { // wait page load
     updateBookingStatus("change_requested", "./artist-request-changes.html"); // request changes
   });
 
-  // ---------- Decline Button ----------
-  document.getElementById("declineBtn")?.addEventListener("click", () => {
-    updateBookingStatus("declined", "./artist-decline-booking.html"); // decline booking
+ // ---------- Decline Button ----------
+document.getElementById("declineBtn")?.addEventListener("click", () => {
+ 
+  localStorage.setItem("zeena_selected_booking", JSON.stringify(data));
+  window.location.href = "./artist-decline-booking.html";
   });
 });
